@@ -2,11 +2,11 @@
 
 /**
  * print_envir - prints current environment of shell
- * @env: the environment
+ * @env: the pointer to environment
  * @argv: array of inputs
  */
 
-void print_envir(char **env, char *argv)
+void print_envir(char **env, char **argv)
 {
 	if (strcmp(argv[0], "env") == 0)
 	{

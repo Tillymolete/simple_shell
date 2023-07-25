@@ -4,11 +4,13 @@
  * token - tokenizing the string
  * @string: pointer to the string passed
  * @delim: the delimiter
+ *
+ * Return: the number of chstring characters
  */
 
 int token(char *string, char delim[])
 {
-	char *tokehold;
+	char *tokhold;
 	int count = 0;
 
 	tokhold = strtok(string, delim);
@@ -26,7 +28,8 @@ int token(char *string, char delim[])
  * token1 - tokenizes input string
  * @argv: pointer to an array of character pointers
  * @str: the tokenised input string
- * delim: delimiter character array
+ * @delim: delimiter character array
+ *
  * Return: tokenized argument vector array
  */
 
