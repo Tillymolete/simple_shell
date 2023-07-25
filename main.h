@@ -20,4 +20,5 @@ void execu(char **av, char *nm);
 void free_mem(char **str1, char *str2, char *str3);
 char *create_path(const char *inp);
 void print_envir(char **env, char **argv);
+char *get_line();
 #endif

@@ -16,7 +16,7 @@ int main(int argc, char **argv, char **env)
 		{
 			printf("%s", prmt);
 			numchar = getline(&inchar, &buf, stdin);
-			if (numchar < 0 || inchar == NULL)
+			if (numchar < 0 || numchar == EOF)
 				break;
 			while (inchar[i])
 			{
@@ -30,7 +30,7 @@ int main(int argc, char **argv, char **env)
 				free_mem(NULL, cpinchar, inchar);
 				exit(1);
 			}
-			memecpy(cpinchar, inchar, (size_t)numchar);
+			memcpy(cpinchar, inchar, (size_t)numchar);
 			count = token(inchar, " "); /* function created in the token file */
 			argv = mem(NULL, count);
 			if (argv == NULL)

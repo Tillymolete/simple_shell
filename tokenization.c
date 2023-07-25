@@ -8,7 +8,7 @@
 
 int token(char *string, char delim[])
 {
-	char *tokehold;
+	char *tokhold;
 	int count = 0;
 
 	tokhold = strtok(string, delim);

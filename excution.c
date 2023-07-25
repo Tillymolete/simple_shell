@@ -16,7 +16,7 @@ void execu(char **av, char *nm)
 	{
 		if (av)
 		{
-			created_path = created_path(av[0]);
+			created_path = create_path(av[0]);
 			if (execve(created_path, av, NULL) == -1)
 				perror(nm);
 		}

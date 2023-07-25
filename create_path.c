@@ -6,7 +6,7 @@
  * Return: the actual path to the input
  */
 
-char *create_path(const char *inp);
+char *create_path(const char *inp)
 {
 	char *path, *cppath = NULL, *tokpath = NULL, *exact_path = NULL;
 	struct stat file_buf;
