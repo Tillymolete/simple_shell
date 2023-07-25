@@ -23,9 +23,11 @@ int token(char *string, char delim[])
 }
 
 /**
- *
- *
- *
+ * token1 - tokenizes input string
+ * @argv: pointer to an array of character pointers
+ * @str: the tokenised input string
+ * delim: delimiter character array
+ * Return: tokenized argument vector array
  */
 
 char **token1(char **argv, char *str, char delim[])
