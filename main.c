@@ -25,7 +25,7 @@ int main(int argc, char **argv, char **env)
 		{
 			if (isatty(STDIN_FILENO))
 				printf("%s", ps1);
-			
+
 			numchar = getline(&inchar, &buf, stdin);
 			if (numchar < 0 || numchar == EOF)
 				break;
