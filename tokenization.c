@@ -1,57 +1,33 @@
 #include "main.h"
 
-/**
- * token - tokenizing the string
- * @string: pointer to the string passed
- * @delim: the delimiter
- *
- * Return: the number of chstring characters
- */
 
-int token(char *string, char delim[])
+/*** Tokenize the input string based on delimiters*/
+
+char **tokenize(char *input, const char *delimiters)
 {
-	char *tokhold;
-	int count = 0;
-
-	tokhold = strtok(string, delim);
-	while (tokhold != NULL)
+	char *token;
+	char **tokens = malloc(sizeof(char *));
+	int token_count = 0;
+	
+	if (tokens == NULL)
 	{
-		count++;
-		tokhold = strtok(NULL, delim);
+		perror("malloc");
+		exit(1);
 	}
-	count++;
-
-	return (count);
-}
-
-/**
- * token1 - tokenizes input string
- * @argv: pointer to an array of character pointers
- * @str: the tokenised input string
- * @delim: delimiter character array
- *
- * Return: tokenized argument vector array
- */
-
-char **token1(char **argv, char *str, char delim[])
-{
-	char *tokhold;
-	int i;
-
-	tokhold = strtok(str, delim);
-	for (i = 0; tokhold != NULL; i++)
+	token = strtok(input, delimiters);
+	while (token != NULL)
 	{
-		argv[i] = mem1(NULL, strlen(tokhold));
-		if (argv[i] == NULL)
+		tokens[token_count] = strdup(token);
+		token_count++;
+		tokens = realloc(tokens, (token_count + 1) * sizeof(char *));
+		if (tokens == NULL)
 		{
-			for (; i >= 0; i--)
-				free_mem(NULL, argv[i], NULL);
-			return (argv);
+			perror("realloc");
+			exit(1);
 		}
-		memcpy(argv[i], tokhold, strlen(tokhold));
-		tokhold = strtok(NULL, delim);
+		token = strtok(NULL, delimiters);
 	}
-
-	argv[i] = NULL;
-	return (argv);
+	tokens[token_count] = NULL;
+	
+	return (tokens);
 }

@@ -1,65 +1,64 @@
 #include "main.h"
 
-/**
- * main - unix command-line interpreter
- * @argc: number of command-line arguments
- * @argv: an array of arguments
- * @env: array of strings with environment variables
- *
- * Return: 0 at success
- */
+/***** Betty Function */
 
-char prmt[] = "#cisfun$ ";
+int main(int argc, char **argv, char **env) {
+    ssize_t numchar = 0;
+    size_t buf = 0;
+    char *inchar = NULL, *nm = argv[0], **tokens = NULL;
+    char *ps1 = NULL;
 
-int main(int argc, char **argv, char **env)
+    /*Get the PS1 environment variable, or set a default prompt*/
+    ps1 = get_ps1();
+    
+    if (argc == 1)
+    {
+	    while (1)
+	    {
+		    printf("%s", ps1);
+		    
+		    numchar = getline(&inchar, &buf, stdin);
+		    if (numchar < 0 || numchar == EOF)
+			    break;
+		    /* Remove the trailing newline character*/
+		    if (inchar[numchar - 1] == '\n')
+		    {
+			    inchar[numchar - 1] = '\0';
+			    numchar--;
+		    }
+		    
+		    /* Tokenize the input command*/
+		    tokens = tokenize(inchar, " ");
+		    /* Execute the command*/
+		    execu(tokens, env, nm);
+		    /* Free the memory used for tokens*/
+		    free_tokens(tokens);
+	    }
+    }
+    /*Free the memory used for the input buffer*/
+    free(inchar);
+    return 0;
+}
+
+/****** Free the memory used for tokens*/
+void free_tokens(char **tokens)
 {
-	ssize_t numchar = 0; /* total characters */
-	size_t buf = 0, count = 0; /* buf used as storage */
-	char *inchar = NULL, *cpinchar = NULL, *prgname = argv[0];
+	int i;
 
-	int i = 0;
-
-	if (argc == 1)
+	if (tokens != NULL)
 	{
-		for(; 1; )
-		{
-			printf("%s", prmt);
-			numchar = getline(&inchar, &buf, stdin);
-			if (numchar < 0 || numchar == EOF)
-				break;
-			while (inchar[i])
-			{
-				if (inchar[i] == '\n')
-					inchar[i] = 0;
-				i++;
-			}
-			cpinchar = mem1(NULL, numchar);
-			if (cpinchar == NULL)
-			{
-				free_mem(NULL, cpinchar, inchar);
-				exit(1);
-			}
-			memcpy(cpinchar, inchar, (size_t)numchar);
-			count = token(inchar, " "); /* function created in the token file */
-			argv = mem(NULL, count);
-			if (argv == NULL)
-			{
-				free_mem(argv, cpinchar, inchar);
-				exit(1);
-			}
-			argv = token1(argv, cpinchar, " ");
-			if (argv == NULL)
-			{
-				free_mem(argv, NULL, cpinchar);
-				exit(1);
-			}
-			print_envir(env, argv);
-			execu(argv, prgname); /* excution function in  the file */
-			for (i = 0; argv[i] != NULL; i++)
-				free_mem(NULL, argv[i], NULL);
-			free_mem(argv, NULL, cpinchar);
-		}
+		for (i = 0; tokens[i] != NULL; i++)
+			free(tokens[i]);
 	}
-	free_mem(NULL, NULL, inchar);
-	return (0);
+	free(tokens);
+}
+
+/****Get the PS1 environment variable or set a default prompt*/
+char *get_ps1()
+{
+    char *ps1 = getenv("PS1");
+    if (ps1 == NULL)
+        /*Default prompt if PS1 is not set*/
+        ps1 = "#cisfun$ ";
+    return ps1;
 }
