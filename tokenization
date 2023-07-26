@@ -30,7 +30,7 @@ int token(char *string, char delim[])
  * @str: the tokenised input string
  * @delim: delimiter character array
  *
- * Return: tokenized argument vector array
+ * Return: the tokenized argument vector array
  */
 
 char **token1(char **argv, char *str, char delim[])

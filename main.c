@@ -1,6 +1,13 @@
 #include "main.h"
 
-/***** Betty Function */
+/**
+ * main - Betty Function
+ * @argc: the argument count for the environment
+ * @argv: argument vector of environment
+ * @env: the environment variable
+ *
+ * Return: 0 at success
+ */
 
 int main(int argc, char **argv, char **env) {
     ssize_t numchar = 0;
@@ -40,7 +47,12 @@ int main(int argc, char **argv, char **env) {
     return 0;
 }
 
-/****** Free the memory used for tokens*/
+/**
+ * free_tokens - frees allocated memory used for tokens
+ * @tokens: the allocated array of string memory
+ *
+ * Return: Nothing
+ */
 void free_tokens(char **tokens)
 {
 	int i;
@@ -53,12 +65,16 @@ void free_tokens(char **tokens)
 	free(tokens);
 }
 
-/****Get the PS1 environment variable or set a default prompt*/
+/**
+ * get_ps1 - retrieves value of environment variable
+ *
+ * Return: value of the environment
+ */
 char *get_ps1()
 {
     char *ps1 = getenv("PS1");
     if (ps1 == NULL)
         /*Default prompt if PS1 is not set*/
         ps1 = "#cisfun$ ";
-    return ps1;
+    return (ps1);
 }

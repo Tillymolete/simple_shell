@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * path_finder - creates a path to input
+ * create_path - creates a path to input
  * @inp: the user input
  *
  * Return: the actual path to the input

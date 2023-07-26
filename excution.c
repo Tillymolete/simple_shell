@@ -1,9 +1,10 @@
 #include "main.h"
 
-/*
- * execu - function that execute the program
- * @av: The argument vector
+/**
+ * execu - executes the program with provided arguments
+ * @av: The argument of array of strings
  * @nm: the program name
+ * @env: the provided environment variables
  *
  * Return: Nothing
  */
@@ -19,7 +20,8 @@ void execu(char **av, char **env, char *nm)
 	{
 		perror("fork");
 		exit(1);
-	}else if (prid == 0)
+	}
+	else if (prid == 0)
 	{
 		if (av)
 		{

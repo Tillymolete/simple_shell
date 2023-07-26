@@ -1,14 +1,20 @@
 #include "main.h"
 
 
-/*** Tokenize the input string based on delimiters*/
+/**
+ * tokenize - split two strings into mulitple tokens
+ * @input: the input argument
+ * @delimiters: the delimiter argument
+ *
+ * Return: the pointer to the array of tokens
+ */
 
 char **tokenize(char *input, const char *delimiters)
 {
 	char *token;
 	char **tokens = malloc(sizeof(char *));
 	int token_count = 0;
-	
+
 	if (tokens == NULL)
 	{
 		perror("malloc");
@@ -28,6 +34,6 @@ char **tokenize(char *input, const char *delimiters)
 		token = strtok(NULL, delimiters);
 	}
 	tokens[token_count] = NULL;
-	
+
 	return (tokens);
 }
