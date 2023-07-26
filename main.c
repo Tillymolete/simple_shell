@@ -9,7 +9,8 @@
  * Return: 0 at success
  */
 
-int main(int argc, char **argv, char **env) {
+int main(int argc, char **argv, char **env)
+{
     ssize_t numchar = 0;
     size_t buf = 0;
     char *inchar = NULL, *nm = argv[0], **tokens = NULL;
@@ -44,7 +45,7 @@ int main(int argc, char **argv, char **env) {
     }
     /*Free the memory used for the input buffer*/
     free(inchar);
-    return 0;
+    return (0);
 }
 
 /**
