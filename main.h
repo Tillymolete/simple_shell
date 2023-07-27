@@ -11,6 +11,7 @@
 
 /*MACROS*/
 #define BUFFER 1024
+/*GLOBAL VARIABLE*/
 
 /*PROTOTYPE*/
 char **tokenize(char *input, const char *delimiters);
