@@ -8,19 +8,21 @@
 
 void print_envir(char **env, char **argv)
 {
+	int i = 0;
+
 	if (strcmp(argv[0], "env") == 0)
 	{
 		if (argv[1] != NULL)
 		{
 			return;
 		}
-		while (*env)
+		for (; i <= 11; i++)
 		{
 			if (*env)
-				puts(*env);
-			env++;
+				puts(env[i]);
+			/*env++;*/
 		}
-	} else if (strcmp(argv[0], "eexit") == 0)
+	} else if (strcmp(argv[0], "exit") == 0)
 	{
 		exit(0);
 	}

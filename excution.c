@@ -13,11 +13,12 @@ void execu(char **av, char **env, char *nm)
 {
 	char *created_path = NULL;
 	pid_t prid = fork(); /* process ID, fork ID of current running process */
-	int stt, est; /* status */
+	int stt; /* status */
 	(void)env;
 
 	if (prid < 0)
 	{
+		perror(nm);
 		exit(1);
 	}
 	else if (prid == 0)
@@ -26,7 +27,10 @@ void execu(char **av, char **env, char *nm)
 		{
 			created_path = create_path(av[0]);
 			if (!created_path)
+			{
+				perror(nm);
 				exit(1);
+			}
 			if (execve(created_path, av, NULL) == -1)
 			{
 				perror(nm);
@@ -38,14 +42,6 @@ void execu(char **av, char **env, char *nm)
 	}
 	else
 	{
-		waitpid(prid, &stt, 0);
-		if (WIFEXITED(stt))
-		{
-			est = WEXITSTATUS(stt);
-			if (est == 0 && av[0] == NULL)
-			{
-				exit(0);
-			}
-		}
+		wait(&stt);
 	}
 }

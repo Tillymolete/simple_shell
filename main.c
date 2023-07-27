@@ -30,7 +30,6 @@ int main(int argc, char **argv, char **env)
 			numchar = getline(&inchar, &buf, stdin);
 			if (numchar < 0 || numchar == EOF)
 				break;
-
 			/* Remove the trailing newline character*/
 			if (inchar[numchar - 1] == '\n')
 			{
@@ -39,6 +38,7 @@ int main(int argc, char **argv, char **env)
 			}
 			/* Tokenize the input command*/
 			tokens = tokenize(inchar, delimit);
+			print_envir(env, tokens);
 			/* Execute the command*/
 			execu(tokens, env, nm);
 			/* Free the memory used for tokens*/
