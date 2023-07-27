@@ -20,7 +20,7 @@ void print_envir(char **env, char **argv)
 				puts(*env);
 			env++;
 		}
-	} else if (strcmp(argv[0], "exit") == 0)
+	} else if (strcmp(argv[0], "eexit") == 0)
 	{
 		exit(0);
 	}
