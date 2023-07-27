@@ -9,6 +9,8 @@
  * Return: 0 at success
  */
 
+const char delimit[] = " \n\t\a\r";
+
 int main(int argc, char **argv, char **env)
 {
 	ssize_t numchar = 0;
@@ -37,7 +39,7 @@ int main(int argc, char **argv, char **env)
 				numchar--;
 			}
 			/* Tokenize the input command*/
-			tokens = tokenize(inchar, " ");
+			tokens = tokenize(inchar, delimit);
 			/* Execute the command*/
 			execu(tokens, env, nm);
 			/* Free the memory used for tokens*/
