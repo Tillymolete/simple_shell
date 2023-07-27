@@ -9,14 +9,13 @@
  * Return: 0 at success
  */
 
-const char delimit[] = " \n\t\a\r";
-
 int main(int argc, char **argv, char **env)
 {
 	ssize_t numchar = 0;
 	size_t buf = 0;
 	char *inchar = NULL, *nm = argv[0], **tokens = NULL;
 	char *ps1 = NULL;
+	const char delimit[] = " \n\t\a\r";
 
 	/*Get the PS1 environment variable, or set a default prompt*/
 	ps1 = get_ps1();
