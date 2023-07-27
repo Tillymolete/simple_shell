@@ -6,17 +6,13 @@
 
 /**
  * _atoi - convert string digits to integer
- * @s: pointer to the string array
+ * @string: pointer to the string array
  *
  * Return: the function string
  */
 
-int _atoi(char *s)
+int _atoi(char *string)
 {
-	return (atoi(s));
-}
-
-/*{
 	int x;
 	int res = 0;
 	int sign = -1;
@@ -34,9 +30,9 @@ int _atoi(char *s)
 			res -= (string[x] - '0');
 			brk = 1;
 		}
-		else if (brk ==1)
+		else if (brk == 1)
 			break;
 	}
 	res = sign * res;
 	return (res);
-}*/
+}

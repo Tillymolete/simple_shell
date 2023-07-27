@@ -14,10 +14,7 @@
 
 int _strcmp(char *s1, char *s2)
 {
-	return (strcmp(s1, s2));
-}
-
-/*{
+	size_t n = 0;
 	size_t i;
 	int diff;
 
@@ -28,4 +25,4 @@ int _strcmp(char *s1, char *s2)
 			break;
 	}
 	return (diff);
-}*/
+}
