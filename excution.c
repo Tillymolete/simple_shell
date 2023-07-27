@@ -25,7 +25,6 @@ void execu(char **av, char **env, char *nm)
 	{
 		if (av)
 		{
-			
 			created_path = create_path(av[0]);
 			if (!created_path)
 			{
