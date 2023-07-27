@@ -11,7 +11,7 @@
 
 void execu(char **av, char **env, char *nm)
 {
-	/*char *created_path = NULL;*/
+	char *created_path = NULL;
 	pid_t prid = fork(); /* process ID, fork ID of current running process */
 	int stt; /* status */
 	(void)env;
@@ -25,22 +25,21 @@ void execu(char **av, char **env, char *nm)
 	{
 		if (av)
 		{
-			/**
-			 * created_path = create_path(av[0]);
-			 * if (!created_path)
-			 * {
-			 * perror(nm);
-			 * exit(1);
-			 * }
-			*/
-			if (execve(av[0]/*created_path*/, av, NULL) == -1)
+			
+			created_path = create_path(av[0]);
+			if (!created_path)
+			{
+			perror(nm);
+			exit(1);
+			}
+			if (execve(created_path, av, NULL) == -1)
 			{
 				perror(nm);
 				exit(1);
 			}
 		}
-		/*free(created_path);*/
-		/*created_path = NULL;*/
+		free(created_path);
+		created_path = NULL;
 	}
 	else
 		wait(&stt);
