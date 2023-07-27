@@ -15,6 +15,7 @@ int main(int argc, char **argv, char **env)
 	size_t buf = 0;
 	char *inchar = NULL, *nm = argv[0], **tokens = NULL;
 	char *ps1 = NULL;
+	const char delimit[] = " \n\t\a\r";
 
 	/*Get the PS1 environment variable, or set a default prompt*/
 	ps1 = get_ps1();
@@ -25,7 +26,7 @@ int main(int argc, char **argv, char **env)
 		{
 			if (isatty(STDIN_FILENO))
 				printf("%s", ps1);
-			
+
 			numchar = getline(&inchar, &buf, stdin);
 			if (numchar < 0 || numchar == EOF)
 				break;
@@ -37,7 +38,7 @@ int main(int argc, char **argv, char **env)
 				numchar--;
 			}
 			/* Tokenize the input command*/
-			tokens = tokenize(inchar, " ");
+			tokens = tokenize(inchar, delimit);
 			/* Execute the command*/
 			execu(tokens, env, nm);
 			/* Free the memory used for tokens*/
